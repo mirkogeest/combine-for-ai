@@ -5,6 +5,10 @@
   "version": "0.1.1",
   "publisher": "mirkogee",
   "icon": "images/combine-files-for-ai.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mirkogeest/combine-for-ai.git"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },

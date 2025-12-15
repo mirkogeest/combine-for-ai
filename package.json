@@ -2,7 +2,7 @@
   "name": "combine-for-ai",
   "displayName": "Combine files for AI",
   "description": "Combines selected files into the clipboard for AI prompts.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "mirkogee",
   "icon": "images/combine-files-for-ai.png",
   "repository": {
@@ -16,13 +16,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:combine-for-ai.combine"
+    "onCommand:combine-for-ai.combine",
+    "onCommand:combine-for-ai.combineSourceControl"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "combine-for-ai.combine",
+        "title": "Combine for AI"
+      },
+      {
+        "command": "combine-for-ai.combineSourceControl",
         "title": "Combine for AI"
       }
     ],
@@ -32,6 +37,22 @@
           "command": "combine-for-ai.combine",
           "when": "resourceScheme == 'file'",
           "group": "9_cutcopypaste@1"
+        }
+      ],
+      "scm/title": [
+        {
+          "command": "combine-for-ai.combineSourceControl",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "combine-for-ai.combine",
+          "when": "false"
+        },
+        {
+          "command": "combine-for-ai.combineSourceControl"
         }
       ]
     }

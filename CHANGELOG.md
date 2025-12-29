@@ -4,6 +4,11 @@ All notable changes to the "combine-for-ai" extension will be documented in this
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.2.1] - 2025-12-29
+
+### Changed
+- **Smarter folder dialog**: The recursive folder prompt now only appears when folders are actually selected. When selecting only files, the extension skips the prompt and combines files directly for a faster workflow.
+
 ## [0.2.0] - 2025-12-15
 
 ### Added

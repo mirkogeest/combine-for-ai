@@ -14,17 +14,35 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    // Ask user if they want recursive processing
-    const recursive = await vscode.window.showQuickPick(
-      ['No - Only files', 'Yes - Include subfolders'],
-      { placeHolder: 'Process folders recursively?' }
-    );
-
-    if (!recursive) {
-      return; // User cancelled
+    // Check if any of the selected URIs are folders
+    let hasFolders = false;
+    for (const uri of selectedUris) {
+      try {
+        const stat = await vscode.workspace.fs.stat(uri);
+        if (stat.type === vscode.FileType.Directory) {
+          hasFolders = true;
+          break;
+        }
+      } catch (error) {
+        // Ignore errors when checking file types
+      }
     }
 
-    const shouldRecurse = recursive.startsWith('Yes');
+    let shouldRecurse = false;
+
+    // Only ask about recursion if there are folders
+    if (hasFolders) {
+      const recursive = await vscode.window.showQuickPick(
+        ['No - Only files', 'Yes - Include subfolders'],
+        { placeHolder: 'Process folders recursively?' }
+      );
+
+      if (!recursive) {
+        return; // User cancelled
+      }
+
+      shouldRecurse = recursive.startsWith('Yes');
+    }
 
     // Collect all files from selected URIs (expanding folders)
     const allFiles = await collectFiles(selectedUris, shouldRecurse);

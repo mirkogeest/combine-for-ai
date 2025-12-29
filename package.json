@@ -2,7 +2,7 @@
   "name": "combine-for-ai",
   "displayName": "Combine files for AI",
   "description": "Combines selected files into the clipboard for AI prompts.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "mirkogee",
   "icon": "images/combine-files-for-ai.png",
   "repository": {
